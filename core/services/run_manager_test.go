@@ -260,7 +260,7 @@ func TestRunManager_Create(t *testing.T) {
 	job.Tasks = []models.TaskSpec{cltest.NewTask(t, "NoOp")} // empty params
 	require.NoError(t, store.CreateJob(&job))
 
-	requestID := "RequestID"
+	requestID := common.HexToHash("0xcafe")
 	initiator := job.Initiators[0]
 	rr := models.NewRunRequest(models.JSON{})
 	rr.RequestID = &requestID
@@ -342,7 +342,7 @@ func TestRunManager_Create_fromRunLog_Happy(t *testing.T) {
 			require.NoError(t, app.Store.CreateJob(&job))
 
 			creationHeight := big.NewInt(1)
-			requestID := "RequestID"
+			requestID := common.HexToHash("0xcafe")
 			initiator := job.Initiators[0]
 			rr := models.NewRunRequest(models.JSON{})
 			rr.RequestID = &requestID
@@ -635,7 +635,7 @@ func TestRunManager_Create_fromRunLog_ConnectToLaggingEthNode(t *testing.T) {
 	job.Tasks = []models.TaskSpec{cltest.NewTask(t, "NoOp")}
 	require.NoError(t, store.CreateJob(&job))
 
-	requestID := "RequestID"
+	requestID := common.HexToHash("0xcafe")
 	initiator := job.Initiators[0]
 	rr := models.NewRunRequest(models.JSON{})
 	rr.RequestID = &requestID
